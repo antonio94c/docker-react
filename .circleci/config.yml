@@ -1,10 +1,10 @@
 language: generic
-sudo: required  #permessi di root
+sudo: required  
 services:
-  - docker      #abbiamo bisogno di docker
+  - docker      
 
-before_install: #operazioni preliminari (build)
+before_install: 
   - docker build -t antonio94c/docker-react -f Dockerfile.dev .
 
-script: #scipt after install
+script: 
   - docker run -e CI=true antonio94c/docker-react npm run test -- --coverage
