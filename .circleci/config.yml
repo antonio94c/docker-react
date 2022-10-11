@@ -24,16 +24,16 @@ jobs:
             command: 'docker build -f Dockerfile.dev -t antonio94c/docker-react .'
   test:
     working_directory: ~/mern-starter
-      docker:
-        - image: docker:17.09.1-ce-git
-          auth:
-            username: antonio94c
-            password: F_ailuRe94?
-      steps: 
-        - checkout
-        - setup_remote_docker: 
-            version: 20.10.14
-            docker_layer_caching: true
-        - run:
-            name: test
-            command: 'docker run antonio94c/docker-react npm run test -- --coverage'
+    docker:
+      - image: docker:17.09.1-ce-git
+        auth:
+          username: antonio94c
+          password: F_ailuRe94?
+    steps: 
+      - checkout
+      - setup_remote_docker: 
+          version: 20.10.14
+          docker_layer_caching: true
+      - run:
+          name: test
+          command: 'docker run antonio94c/docker-react npm run test -- --coverage'
