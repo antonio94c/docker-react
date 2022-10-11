@@ -1,10 +1,10 @@
-language: generic
-sudo: required  
-services:
-  - docker      
-
-before_install: 
-  - docker build -t antonio94c/docker-react -f Dockerfile.dev .
-
-script: 
-  - docker run -e CI=true antonio94c/docker-react npm run test -- --coverage
+version: 2.1
+jobs:
+  build:
+    docker: 
+      build: Dockerfile.dev
+    steps:
+      run: docker build -t antonio94c/docker-react -f Dockerfile.dev .
+  test:
+    steps:
+      run: docker run -e CI=true antonio94c/docker-react npm run test -- --coverage
