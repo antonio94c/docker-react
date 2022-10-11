@@ -1,10 +1,35 @@
 version: 2.1
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - test
+
 jobs:
   build:
-    docker: 
-      build: Dockerfile.dev
-    steps:
-      run: docker build -t antonio94c/docker-react -f Dockerfile.dev .
+      working_directory: ~/mern-starter
+      docker:
+        - image: circleci/docker-gc:2.0
+          auth:
+            username: antonio94c
+            password: F_ailuRe94?
+      steps: 
+        - checkout
+        - run:
+            name: build
+            command: 'docker build -f Dockerfile.dev -t antonio94c/docker-react .'
   test:
-    steps:
-      run: docker run -e CI=true antonio94c/docker-react npm run test -- --coverage
+      working_directory: ~/mern-starter
+      docker:
+        - image: circleci/docker-gc:2.0
+          auth:
+            username: antonio94c
+            password: F_ailuRe94?
+      steps: 
+        - checkout
+        - run:
+            name: test
+            command: 'docker run -e CI=true antonio94c/docker-react npm run test -- --coverage'
+
