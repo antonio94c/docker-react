@@ -11,7 +11,7 @@ jobs:
   build:
       working_directory: ~/mern-starter
       docker:
-        - image: circleci/docker-gc:2.0
+        - image: docker:17.09.1-ce-git
           auth:
             username: antonio94c
             password: F_ailuRe94?
@@ -23,7 +23,7 @@ jobs:
   test:
       working_directory: ~/mern-starter
       docker:
-        - image: circleci/docker-gc:2.0
+        - image: docker:17.09.1-ce-git
           auth:
             username: antonio94c
             password: F_ailuRe94?
