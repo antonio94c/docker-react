@@ -4,11 +4,10 @@ workflows:
   version: 2
   build:
     jobs:
-      - build
-      - test
+      - buildAndTest
 
 jobs:
-  build:
+  buildAndTest:
       working_directory: ~/mern-starter
       docker:
         - image: docker:17.09.1-ce-git
