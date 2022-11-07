@@ -12,9 +12,11 @@ pipeline {
             }
         }
         stage('Deploy image'){
-            script {
-                docker.withRegistry('', 'dockerhub'){
-                    dockerImage.push()
+            steps{
+                script {
+                    docker.withRegistry('', 'dockerhub'){
+                        dockerImage.push()
+                    }
                 }
             }
         }
