@@ -1,10 +1,21 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'node:16.17.1-alpine' } }
+    agent { 
+        label 'docker' 
+    }
     stages {
-        stage('build') {
+        stage('Building our image') {
             steps {
-                sh 'node --version'
+                script {
+                    dockerImage = docker.build "antonio94c/view:$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy image'){
+            script {
+                docker.withRegistry('', 'dockerhub'){
+                    dockerImage.push()
+                }
             }
         }
     }
