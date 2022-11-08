@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Run our Test') {
             steps{
-               sh 'docker run antonio94c/view npm run test'
+               sh 'docker run antonio94c/view npm test -- --watchAll=false'
             }
         }
         /*
