@@ -6,6 +6,17 @@ pipeline {
     stages {
         stage('Building our image') {
             steps {
+                sh 'docker build -t antonio94c/view -f Dockerfile.dev .'
+            }
+        }
+        stage('Run our Test') {
+            steps{
+               sh 'docker run antonio94c/view npm run test'
+            }
+        }
+        /*
+        stage('Building our image') {
+            steps {
                 script {
                     dockerImage = docker.build "antonio94c/view:$BUILD_NUMBER"
                 }
