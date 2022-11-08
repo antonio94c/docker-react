@@ -11,6 +11,16 @@ pipeline {
                 }
             }
         }
+        stage('Run our image') {
+            steps{
+                script {
+                    dockerImage.withRun(''){
+                        sh 'npm run test -- --coverage'
+                    }
+                }
+            }
+        }
+        /*
         stage('Deploy image'){
             steps{
                 script {
@@ -19,6 +29,6 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
     }
 }
