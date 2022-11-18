@@ -13,7 +13,8 @@ pipeline {
             steps{
                sh 'docker run antonio94c/view npm test -- --watchAll=false'
             }
-        }stage('Go Up') {
+        }
+        stage('Go Up') {
             steps{
                 sh 'docker-compose up'
             }
