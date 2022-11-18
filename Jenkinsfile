@@ -5,11 +5,17 @@ pipeline {
     }
     stages {
         stage('Building our image') {
+            agent { 
+                label 'docker-build' 
+            }
             steps {
                 sh 'docker build -t antonio94c/view -f Dockerfile.dev .'
             }
         }
         stage('Run our Test') {
+            agent { 
+                label 'docker-build' 
+            }
             steps{
                sh 'docker run antonio94c/view npm test -- --watchAll=false'
             }
