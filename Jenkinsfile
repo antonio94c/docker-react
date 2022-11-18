@@ -13,14 +13,14 @@ pipeline {
                 sh 'docker build -t antonio94c/fronted .'
             }
         }
-        stage('Run our Test') {
+        /*stage('Run our Test') {
             steps{
                sh 'docker run antonio94c/fronted npm test -- --watchAll=false'
             }
-        }
+        }*/
         stage('Clean after build and test'){
             steps{
-                sh 'rm -rf Fronted/'
+                sh 'rm -rf workspace/Fronted/'
             }
         }
         stage('Go Up') {
